@@ -62,7 +62,7 @@ solution(arr3)
 solution(arr4)
 ```
 
-![image-20180911194456103](/var/folders/4l/l32v4snd18qfng3lcvwv24bw0000gn/T/abnerworks.Typora/image-20180911194456103.png)
+![image-20180911194456103]
 
 예상했던 결과대로 잘 나온다. 다른 특이한 테스트 케이스가 더 주어졌으면 좋았을 것 같다.
 
