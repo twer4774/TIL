@@ -84,6 +84,5 @@ def vartest(a):
 def vartest(a):
     global a
     a = a+1
-   
 ```
 
