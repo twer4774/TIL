@@ -43,9 +43,7 @@ def solution(s):
 solution(s)
 ```
 
-![image-20180909122514488](/var/folders/4l/l32v4snd18qfng3lcvwv24bw0000gn/T/abnerworks.Typora/image-20180909122514488.png)
-
-![image-20180909122612187](/var/folders/4l/l32v4snd18qfng3lcvwv24bw0000gn/T/abnerworks.Typora/image-20180909122612187.png)
+![Print the middle letters result](/Users/wonik/Desktop/TIL/TIL/Algorithm/Print the middle letters result.png)
 
 ### 다른사람의 풀이
 
@@ -65,7 +63,7 @@ def anotherSolution(str):
 anotherSolution(s)
 ```
 
-![image-20180909122922964](/var/folders/4l/l32v4snd18qfng3lcvwv24bw0000gn/T/abnerworks.Typora/image-20180909122922964.png)
+
 
 ## 테스트 결과
 
