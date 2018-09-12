@@ -31,7 +31,7 @@ def solution(arr):
             ansC += 1
     return answer
 ```
-
+![result.png]
 ### 다른 사람의 풀이
 
 ```python
