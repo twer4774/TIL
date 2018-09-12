@@ -43,7 +43,7 @@ def solution(s):
 solution(s)
 ```
 
-![Print the middle letters result](/Users/wonik/Desktop/TIL/TIL/Algorithm/Print the middle letters result.png)
+![print the middle letters result](https://user-images.githubusercontent.com/13410123/45423480-722efb80-b6ce-11e8-97c2-4a5f3faa853d.png)
 
 ### 다른사람의 풀이
 
