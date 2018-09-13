@@ -137,3 +137,47 @@ class Eagle(Bird):
 #eagle.fly() #very fast
 ```
 
+```python
+try:
+    print('안녕하세요')
+    print(param)
+except:
+    print('예외 발생!!') #print(param)구문이 에러를 발생하기 때문에 에러가 남
+
+
+try:
+    print('안녕하세요')
+    print(param)
+except:
+    print('예외가 발생!!!')
+else:
+    print("정상작동")
+
+
+try:
+    print('안녕하세요')
+    print(param)
+except:
+    print('예외 발생함')
+finally:
+    print('무조건 실행되는 곳')
+
+#발생 가능한 예외를 Exception객체로 미리 정의해둠
+try:
+    print(param)
+except Exception as e:
+    print(e)
+
+
+#특정 예외
+import time
+count = 1
+
+try:
+    while True:
+        print(count)
+        count += 1
+        time.sleep(0.5)
+except KeyboardInterrupt: #Ctrl+C가 입력되면 발생하는 오류
+    print('사용자에 의해 프로그램이 중단됨')
+```
