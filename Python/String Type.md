@@ -258,6 +258,17 @@ s.rjust(n) # 가운데 정렬 ' abc  '
 
 ## 문자열 관련 함수들
 
+- 파이썬에서 제공하는 데이터 상수: 미리 정의 되어 있어서 필요시에 호출만 하면 알파벳, 숫자등을 쉽게 불러옴
+
+  ```python
+  import string 
+  
+  string.ascii_lowercase # 소문자 abcdefghijklmnopqrstuvwxyz
+  string.ascii_uppercase # 대문자 ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  string.ascii_letters #대소문자 모두 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+  string.digits # 숫자 0123456789
+  ```
+
 - 문자열 개수 세기(count)
 
 - ```python
