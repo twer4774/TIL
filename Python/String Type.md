@@ -213,6 +213,14 @@ day = "three"
 
 #공백채우기
 "{0:=^10}".format("hi")  #'====hi===='
+
+#ljust, center, rjust이용하기
+s = 'abc'
+n = 7
+
+s.ljust(n) # 좌측 정렬 'abc    '
+s.center(n) # 우측 정렬 '   abc'
+s.rjust(n) # 가운데 정렬 ' abc  '
 ```
 
  
