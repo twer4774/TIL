@@ -42,4 +42,3 @@ console.log('isNaNMinus123:', isNaNMinus123);
 console.log('isNaN234:', isNaN234);
 console.log('isNaHello:', isNaNHello);
 ```
-
