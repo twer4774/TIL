@@ -71,3 +71,32 @@ navigationcontorller.popViewController(animated:)
 - 코드를 통한 전환 방식
 - 프로그래머가 선호하는 방식
 - 난이도는 높지만 코드와 상황을 임의로 제어해 자유도가 높음
+
+- 전처리 메소드는 화면이 전환되기 직전에 먼저 실행됨
+
+```swift
+override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+//prepare 동작 시키는 코드
+    self.performSegue(withIdentifier: "segue_detail", sender: self)
+}
+extension ListViewController{
+    override func prepare(for segue: UIStoryboardSege, sender: Any?){
+        //실행된 세그웨이의 식별자가 "segue_detail"이라면
+        if segue.identifier == "segue_detail"{
+            //sender 인자를 캐시통하여 테이블 셀 객체로 변환
+            let cell = sender as! MovieCell
+            
+            //사용자가 클릭한 행을 찾아낸다.
+            let path = self.tableView.indexPath(for: cell)
+            
+            //API영화 데이터 배열 중에서 선택된 행에 대한 데이터를 추출한다.
+            let movieInfo = self.list[path!.row]
+            
+            //행 정보를 통해 선택된 영화 데이터를 찾은 다음, 목적지 뷰 컨트롤러의 mvo변수에 대입한다.
+            let detailVC = segue.destination as? DetailViewController
+            detailVC?.mvo = movieInfo
+        }
+    }
+}
+```
+
