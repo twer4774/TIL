@@ -84,7 +84,45 @@ callback {
 
  원래 클로저의 기본속성은 탈출 불가하게 관리 -> 컴파일러의 코드 최적화의 이유 때문
 
- 
+- 클로저가 함수로부터 Escape한다는 것은 해당 함수의 인자로 클로저가 전달되지만, 함수가 반환 된 후 실행되는 것을 의미함
+- A함수가 마무리 된 상태에서만 B함수가 실행되도록 함수 작성 가능
+- HTTP통신에서 request를 보내고 response가 완료되어야 다른 함수가 실행되는 경우 Escaping 이용 
+
+```swift
+// 함수 외부에 클로저를 저장하는 예시 - Swift4 공식문서
+// 클로저를 저장하는 배열
+var completionHandlers: [() -> Void] = []
+
+func withEscaping(completion: @escaping () -> Void) {
+    // 함수 밖에 있는 completionHandlers 배열에 해당 클로저를 저장(외부에 저장) => 클로저가 함수를 벗어남
+    completionHandlers.append(completion)
+}
+
+func withoutEscaping(completion: () -> Void) {
+    completion()
+}
+
+class SomeClass {
+    var x = 10
+    func doSomething() {
+        //명시적으로 self를 해주어야 함
+        someFunctionWithEscapingClosure { self.x = 100 }
+        someFunctionWithNonescapingClosure { x = 200 }
+    }
+}
+
+let instance = SomeClass()
+instance.doSomething()
+print(instance.x)
+// Prints "200"
+
+//completionHnadlers의 첫번째 값은 100이 저장됨
+completionHandlers.first?()
+print(instance.x)
+// Prints "100"
+```
+
+
 
 ## @autoclosure
 
