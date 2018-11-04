@@ -6,6 +6,7 @@
 - info.plist에서 Privacy - Media Library Usage Description 설정필요
 
 ```swift
+import MediaPlayer
 // Instantiate a new music player
 let myMediaPlayer = MPMusicPlayerApplicationController.applicationQueuePlayer()
 // Add a playback queue containing all songs on the device
@@ -80,6 +81,7 @@ func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
   - init, 재생, 일시정지, 정지 기능을 구현해주어야 함 
 
 ```swift
+import AVFoundation
 class ViewController: UIViewController{ 
 	@IBAction func btnPlay(_ sender: Any) {
         audioPlayer.play()
