@@ -84,3 +84,157 @@
 
 
 
+## 구현 - Python
+
+- 정수 배열과 배열의 개수를 파라미터로 받는다.
+- start(left), end(right) 또한 부분집합에서 값을 바꾸어야 하므로 입력 파라미터로 값을 전달 받는다.
+- 주의사항: 책에 있는 그대로 C언어를 가져와서 만들어 봤지만, 파이썬에서는 후위증감 연산자를 지원하지 않아 구현방법이 조금 다르다
+
+```python
+value = [80, 75, 10, 60, 15, 49, 12, 25]
+count = len(value)
+
+def quick_sort(value, start, end):
+    pivot = 0
+    if start < end:
+        pivot = partion_quick_sort(value, start, end)
+        #두개의 부분집합에 대한 퀵정렬 수행
+        quick_sort(value, start, pivot-1)
+        quick_sort(value, pivot+1, end)
+    print(value, start, end)
+
+def partion_quick_sort(value, start, end):
+    # 1. 가장 오른쪽에 있는 값을 pivot으로 정한다
+    pivot = end
+    left = start
+    right = end
+
+    while left < right:
+        #2. value[left]는 pivot보다 큰 값, value[right]는 pivot보다 작은 값을 찾는다. => 나중에 교환해서 작은값이 왼쪽이 됨
+
+       #left는 pivot보다 큰 값을 찾아야 하므로 while조건이 참이 되려면 left < pivot. 작은값일때 +1씩해서 큰값을 찾아내야함
+        while value[left] < value[pivot] and left < right:
+            left += 1
+
+        #end 이동 pivot보다 작은 값을 찾아 반복 수행. right는 작은 값을 찾아야 하므로 while조건이 참이 되려면 right >= pivot. 큰 값일때 -1씩해서 작은 값을 찾아내야함
+        while value[right] >= value[pivot] and left < right:
+            right -= 1
+
+        if left < right:
+            print("교환 전 [pivot: {pivot}, left: {left}, right: {right}]".format(pivot=value[pivot], left=value[left], right=value[right]))
+            print_array(value, start, end)
+
+            #교환
+            value[left], value[right] = value[right], value[left]
+
+            print("교환 후[pivot: {pivot}, left: {left}, right: {right}]".format(pivot=value[pivot], left=value[left], right=value[right]))
+            print_array(value, start, end)
+            print("--------------------------------------")
+
+        if left == right:
+            print("교환 전 [pivot: {pivot}, left: {left}, right: {right}]".format(pivot=value[pivot], left=value[left], right=value[pivot]))
+            print_array(value, start, end)
+
+            value[right], value[pivot] = value[pivot], value[right]
+
+            print("교환 후[pivot: {pivot}, left: {left}, right: {right}]".format(pivot=value[right], left=value[left], right=value[pivot]))
+            print_array(value, start, end)
+
+            print("\n")
+    print("=====================================")
+    print_array(value, start, end)
+    print("=====================================\n")
+
+    return right
+
+def print_array(value, start, end):
+    answer = []
+    for i in range(start, end+1):
+        answer.append(value[i])
+    print(answer)
+
+quick_sort(value, 0, count-1)
+
+#결과
+/Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7 /Users/wonik/Desktop/Algoritm/Sort/QuickSort.py
+교환 전 [pivot: 25, left: 80, right: 12]
+[80, 75, 10, 60, 15, 49, 12, 25]
+교환 후[pivot: 25, left: 12, right: 80]
+[12, 75, 10, 60, 15, 49, 80, 25]
+--------------------------------------
+교환 전 [pivot: 25, left: 75, right: 15]
+[12, 75, 10, 60, 15, 49, 80, 25]
+교환 후[pivot: 25, left: 15, right: 75]
+[12, 15, 10, 60, 75, 49, 80, 25]
+--------------------------------------
+교환 전 [pivot: 25, left: 60, right: 25]
+[12, 15, 10, 60, 75, 49, 80, 25]
+교환 후[pivot: 25, left: 25, right: 60]
+[12, 15, 10, 25, 75, 49, 80, 60]
+
+
+=====================================
+[12, 15, 10, 25, 75, 49, 80, 60]
+=====================================
+
+교환 전 [pivot: 10, left: 12, right: 10]
+[12, 15, 10]
+교환 후[pivot: 10, left: 10, right: 12]
+[10, 15, 12]
+
+
+=====================================
+[10, 15, 12]
+=====================================
+
+[10, 15, 12, 25, 75, 49, 80, 60] 0 -1
+교환 전 [pivot: 12, left: 15, right: 12]
+[15, 12]
+교환 후[pivot: 12, left: 12, right: 15]
+[12, 15]
+
+
+=====================================
+[12, 15]
+=====================================
+
+[10, 12, 15, 25, 75, 49, 80, 60] 1 0
+[10, 12, 15, 25, 75, 49, 80, 60] 2 2
+[10, 12, 15, 25, 75, 49, 80, 60] 1 2
+[10, 12, 15, 25, 75, 49, 80, 60] 0 2
+교환 전 [pivot: 60, left: 75, right: 49]
+[75, 49, 80, 60]
+교환 후[pivot: 60, left: 49, right: 75]
+[49, 75, 80, 60]
+--------------------------------------
+교환 전 [pivot: 60, left: 75, right: 60]
+[49, 75, 80, 60]
+교환 후[pivot: 60, left: 60, right: 75]
+[49, 60, 80, 75]
+
+
+=====================================
+[49, 60, 80, 75]
+=====================================
+
+[10, 12, 15, 25, 49, 60, 80, 75] 4 4
+교환 전 [pivot: 75, left: 80, right: 75]
+[80, 75]
+교환 후[pivot: 75, left: 75, right: 80]
+[75, 80]
+
+
+=====================================
+[75, 80]
+=====================================
+
+[10, 12, 15, 25, 49, 60, 75, 80] 6 5
+[10, 12, 15, 25, 49, 60, 75, 80] 7 7
+[10, 12, 15, 25, 49, 60, 75, 80] 6 7
+[10, 12, 15, 25, 49, 60, 75, 80] 4 7
+[10, 12, 15, 25, 49, 60, 75, 80] 0 7
+
+Process finished with exit code 0
+
+```
+
