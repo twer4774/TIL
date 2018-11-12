@@ -61,3 +61,36 @@ M:5, 해시함수: mod 5, 저장되는 검색키: {1, 3, 8, 13}
 4. 13 -> 13 mod 5 = 3(충돌) => (조사간격) = M - (k mod M) => 5 - (13 mod 5) = 2(조사간격) ==> 이전 충돌 발생주소: 3, 조사간격: 2 => h(k) = (3+2) mod 5 =0 => (충돌발생) -> 충돌발생주소:0, 조사간격:2 => h(k) = (0+2) mod 5 = 2 ==> 2에 값 저장
 ```
 
+### 구현
+
+- 파이썬에서 해시를 굳이 구현할 필요는 없다. 딕셔너리 타입을 사용하면 된다.
+- 딕셔너리 타입은 해시로 구현되어있다.
+
+#### 딕셔너리로 구현
+
+```python
+local_code = dict()
+#None으로 채워진 해시테이블 선언
+hash_table = list([None for i in range(10)])
+
+#해시함수
+def hash_func(data):
+    return data % 5
+
+#데이터 저장
+def storage_data(hash_address, data):
+    hash_table[hash_address] = data
+   
+#데이터 가져오기
+def get_data(k):
+   return hash_table[hash_func(k)]
+
+#데이터 저장, 읽기
+address = hash_func(1)
+storage_data(address, "제주")
+print(get_data(1))
+
+#결과
+제주
+```
+
