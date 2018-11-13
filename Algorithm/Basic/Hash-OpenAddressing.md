@@ -94,3 +94,70 @@ print(get_data(1))
 제주
 ```
 
+
+
+#### 파이썬으로 구현
+
+```python
+data_list = ["서울", "제주", "부산", "대전"]
+#해시 테이블 만들기
+hash_table = list([None for i in range(10)])
+
+#해시함수 - 나머지함수이용
+def hash_func(data):
+    hash_value = data % 5
+    return hash_value
+
+#해시 테이블에 저장
+#충돌회피 - 선형조사방법 이용
+def storage_data(key_value, data):
+    inc = 1
+    hash_address = hash_func(key_value)
+
+    if hash_table[hash_address] == None:
+        hash_table[hash_address] = data
+    else: #선형 조사방법으로 재귀를 이용함
+        storage_data(key_value + inc, data)
+        inc = inc + 1
+def run(storeKey):
+    j = 0
+    for i in storeKey:
+        storage_data(i, data_list[j])
+        print(hash_table)
+        j = j+1
+
+run(storeKey)
+
+#결과
+[None, '서울', None, None, None, None, None, None, None, None]
+[None, '서울', None, '제주', None, None, None, None, None, None]
+[None, '서울', None, '제주', '부산', None, None, None, None, None]
+['대전', '서울', None, '제주', '부산', None, None, None, None, None]
+```
+
+```python
+#해시 검색 => 저장된 인덱스를 출력
+#키를 가지고 검색을 시도함. 저장된 데이터가 키와 같은지 비교후 다르면 선형조사법으로 검색 재시도
+def search_data(key, data):
+    # print(id(hash_table[hash_func(key)]))
+    inc = 1
+    #해시함수로 해시테이블에 데이터가 저장되어있는지 확인, 있으면 주소 리턴
+    if hash_table[hash_func(key)] == data:
+        print(hash_func(key))
+    #데이터가 다르다면 선형조사법을 이용해 해시함수 재계산 후 재실행
+    else:
+        search_data(key + inc, data)
+    return hash_table[hash_func(key)]
+
+search_data(1, "서울")
+search_data(3, "제주")
+search_data(8, "부산")
+search_data(13, "대전")
+
+#결과
+1
+3
+4
+0
+```
+
