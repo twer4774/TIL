@@ -76,3 +76,32 @@ override func viewDidLoad(){
 }
 ```
 
+
+
+## Streaming Play
+
+- 스트리밍 서비스를 위해서는 AVPlayer 사용
+
+```swift
+ var player: AVPlayer! //주의 사항 - viewDidLoad()의 위쪽에 선언할 것 -> 함수 내부에 선언 시에 실행안됨
+
+func streamingPlay(url: URL){
+        do{
+        player = AVPlayer.init(url: url)
+        player.volume = 1.0
+        player.play()
+        
+        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+        } catch {
+            print(error)
+        }
+        
+    }
+```
+
+
+
+## AVAudioPlayer VS AVPlayer
+
+- AVPlayer: 로컬 저장된 파일뿐만 아니라 스트리밍을 재생을 위해서도 사용
+- AVAudioPlayer: 로컬에 저장된 오디오 파일의 재생 기능만 제공
