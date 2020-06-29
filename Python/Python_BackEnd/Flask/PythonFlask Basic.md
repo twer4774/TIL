@@ -37,6 +37,8 @@
           sudo -s echo 'usr/local/bin/zsh >> /etc/shells'
           =>> 안되면 sudo nano /etc/shells에 /usr/local/bin/zsh 추가
           
+          ```
+    
       chsh -s /usr/local/bin/zsh
           
       재시작 후 echo $SHELL 로 경로 확인
@@ -66,8 +68,8 @@
 - 가상환경 활성화
 
 - ```
-  source activate api
-  source deactivate
+  conda activate api
+  conda deactivate
   conda env list => 생성된 가상환경 리스트
   ```
 
