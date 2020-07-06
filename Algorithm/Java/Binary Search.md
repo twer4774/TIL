@@ -80,3 +80,54 @@ public class BinarySearch {
 
 
 
+## Arrays.binarySearch
+
+- Java 표준라이브러리 제공
+- 장점
+  - 이진검색 메서드를 직접 코딩할 필요가 없다.
+  - 모든 자료형 배열에서 검색할 수 있다.
+- 단점
+  - key값과 일치하는 요소가 여러개라면, 인덱스를 무작위로 반환
+
+```java
+import java.util.Arrays;
+import java.util.Scanner;
+
+//Arrays.binarySearch로 이진검
+public class BinarySearchTester {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+
+        System.out.println("배열의 길이: ");
+        int num = stdIn.nextInt();
+        int[] arr = new int[num];
+
+        System.out.println("오름 차순으로 입력하세요");
+
+        System.out.println("arr[0]");
+        arr[0] = stdIn.nextInt();
+
+        for (int i = 1; i < num; i++){
+            do {
+                System.out.println("arr[" + i + "]:");
+                arr[i] = stdIn.nextInt();
+            } while (arr[i] < arr[i - 1]);
+        }
+
+        System.out.println("검색할 키");
+        int key = stdIn.nextInt();
+
+        int idx = Arrays.binarySearch(arr, key);
+
+        if(idx == -1){
+            System.out.println("값 없음");
+        }
+        else {
+            System.out.println(key+"는 arr[" + idx + "]에 있습니다." );
+        }
+    }//main
+}
+```
+
+
+
