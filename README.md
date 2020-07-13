@@ -2,6 +2,7 @@
 * iOS
 * Swift
 * Python
+* Django
 * Crawling
 * Node.js
 * Algorithm
