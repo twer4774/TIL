@@ -9,3 +9,4 @@
 * OS(Operating Systems)
 * Firebase
 * Java
+* SQL
