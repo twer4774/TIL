@@ -50,10 +50,12 @@ SELECT ename, sal FROM emp WHERE sal NOT BETWEEN 1000 AND 3000;
 ```
 
 - Null처리
+  - 표준 - COALESCE(필드, null일때 처리할 값) => 사용권장
   - mysql - ifnull(필드, null일때 처리할 값)
   - oracl - NVL(필드, null일때 처리할 값)
 
 ```sql
+SELECT sal + COALESCE(comm, 0) FROM emp WHERE ename="KING";
 SELECT sal + ifnull(comm,0) FROM emp WHERE ename="KING";
 ```
 
