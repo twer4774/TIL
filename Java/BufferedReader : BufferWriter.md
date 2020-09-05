@@ -59,12 +59,15 @@ public class BufferedReaderEx {
 ### BufferWriter
 
 ```java
-public static void main(String[] args) throws IOException{
+import java.util.*;
+public class BufferedWirterEx{	
+	public static void main(String[] args) throws IOException{
         BufferedWriter bw = new BufferedWriter(new FileWriter("bufferedWriter.txt"));
         bw.write("hello\n");
         bw.newLine(); //개행
         bw.flush(); //남아있는 데이터를 모두 출력
         bw.close(); //클로즈
     }
+  }
 ```
 
