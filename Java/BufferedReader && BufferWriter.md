@@ -1,4 +1,4 @@
-# BufferedReader / BufferWriter
+# BufferedReader && BufferWriter
 
 - 버퍼를 이용하여 입출력
 - 효율이 좋아짐
@@ -21,8 +21,6 @@
   - readLine함수의 리턴 값은 String으로 고정되기 때문에 String이 아닌 다른 타입으로 입력을 받으려면 형변환를 꼭 해줘야 함
 
 ```java
-package com.company;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -60,7 +58,7 @@ public class BufferedReaderEx {
 
 ```java
 import java.util.*;
-public class BufferedWirterEx{	
+public class BufferedWriterEx{	
 	public static void main(String[] args) throws IOException{
         BufferedWriter bw = new BufferedWriter(new FileWriter("bufferedWriter.txt"));
         bw.write("hello\n");
