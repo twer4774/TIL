@@ -1,4 +1,4 @@
-# Scheduling Technique - Mutilevel Queue 
+# Scheduling Technique - Multilevel Queue 
 
 - Mutlilevel - 프로세스의 중요도에 따라 레벨을 나눔
 - 중요도에 따라 나눈 프로세스를 레벨별로 나누고, 여러 개의 큐에 다양한 알고리즘을 적용하는 스케줄링 기법
