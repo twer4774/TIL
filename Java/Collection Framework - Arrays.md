@@ -48,8 +48,8 @@ int idx = Arrays.binarySearch(arr, 2); //idx = 2 올바른 결과 반환
 - eepEquals()는 다차원 배열에서 사용
 
 ```java
-String[][] strD = new String[][] {{"aaa", "bbb"}, {"AAA", "BBB"}};
-String[][] strD2 = new String[][] {{"aaa", "bbb"}, {"AAA", "BBB"}};
+String[][] strD = new String[][] { {"aaa", "bbb"}, {"AAA", "BBB"} };
+String[][] strD2 = new String[][] { {"aaa", "bbb"}, {"AAA", "BBB"} };
 
 //다차원 배열이므로 deepEquals를 이용해야 함
 System.out.println(Arrays.equals(strD, strD2)); //false
@@ -62,7 +62,7 @@ System.out.println(Arrays.deepEquals(strD, strD2)); //true
 
 ```java
 int[] arr = {0 1, 2, 3, 4};
-int[][] arr2D = {{11,12}, {21,22}};
+int[][] arr2D = { {11,12}, {21,22} };
 
 System.out.println(Arrays.toString(arr)); //[0, 1, 2, 3, 4]
 System.out.println(Arrays.deepToString(arr2D)); //[[11, 12], [21, 22]]
