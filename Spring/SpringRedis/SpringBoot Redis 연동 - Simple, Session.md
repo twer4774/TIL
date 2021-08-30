@@ -218,7 +218,7 @@ public class SessionController {
 
     @PostMapping("/add")
     @ResponseBody
-    public ResponseEntity<?> addSession(@RequestBody RedisRequest request){
+    public ResponseEntity<?> addSession(@RequestBody RedisRequest request, HttpSession httpSession){
         sessionService.addSession(request);
 
         return ResponseEntity.ok().build();
