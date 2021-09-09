@@ -1,0 +1,3 @@
+application:
+  evn:
+    type: prod
