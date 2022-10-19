@@ -50,3 +50,31 @@ while True:
   
 print(result)
 ```
+# 코드2 수열의 법칙 이용
+``` python
+# N, M, K를 공백으로 구분하여 입력받기  
+print("N, M, K를 공백으로 구분하여 입력받기")  
+n, m, k = map(int, input().split())  
+  
+  
+# N개의 수를 공백으로 구분하여 입력받기  
+print("N개의 수를 공백으로 구분하여 입력받기")  
+data = list(map(int, input().split()))  
+  
+data.sort()  
+first = data[len(data) -1]  
+second = data[len(data) -2]  
+  
+"""  
+{6, 6, 6, 5} 반복되는 수열 형태이다.  
+총 수열의 길이는 (k+1)"""  
+  
+# 가장 큰 수가 더해지는 횟수  
+count = int(m / (k+1)) * k #6  
+count += m % (k+1) #0 # 나누어 떨어지지 않는 경우를 고려. 떨어지지 않는 만큼 큰 수를 더 더해주어야한다.  
+  
+result = 0  
+result += (count) * first  
+result += (m - count) * second  
+print(result)
+```
