@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "slm-practice"
+version = "0.1.0"
+description = ""
+authors = ["wonik-jo <jowonik@hikive.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+jupyter = "^1.1.1"
+requests = "^2.32.3"
+python-dotenv = "^1.0.1"
+sentencepiece = "^0.2.0"
+transformers = "^4.47.1"
+tensorflow = "^2.18.0"
+torch = "^2.5.1"
+torchvision = "^0.20.1"
+torchaudio = "^2.5.1"
+gtts = "^2.5.4"
+pydub = "^0.25.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
