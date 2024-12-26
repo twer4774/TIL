@@ -1,6 +1,9 @@
 - 다양한 도구와 라이브러리 제공
 - 인공지능 모델을 위한 깃허브
 
+## 소스
+https://github.com/twer4774/TIL/blob/master/AI/slm_practice/hugginface_exam/huggingface_exam.ipynb
+
 ## 서비스 및 기술
 - Transformer Library
 	- Transformer는 사전학습된 최첨단 모델들을 쉽게 다운로드하고 훈련할 수 있는 **API와 도구를 제공**

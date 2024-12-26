@@ -2,6 +2,9 @@
 - Mistral, Llama3 등다양한 오픈 소스 LLM 지원
 - 모델 가중치, 설정, 데이터 셋을  하나의 패키지로 묶어 Modefile로 관리
 
+## 소스
+https://github.com/twer4774/TIL/blob/master/AI/slm_practice/ollama_exam/ollama_exam.ipynb
+
 ## Ollama 정의
 - Ollama에 모델 추가
 - Modefile로 관리
