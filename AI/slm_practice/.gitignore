@@ -2,3 +2,4 @@
 .venv
 .idea
 .poetry.lock
+**/naver-news-summarization-ko/**
