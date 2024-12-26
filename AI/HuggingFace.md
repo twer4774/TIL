@@ -15,5 +15,4 @@ https://github.com/twer4774/TIL/blob/master/AI/slm_practice/hugginface_exam/hugg
 		- 오디오: 자동 음성인식, 오디오 분류
 		- 멀티모달 : 표 질의응답, 광학문자인식(OCR), 스캔한 문서에서 정보 추출, 비디오 분류, 시각 질의 응답
 - Huggingface Hub
-	- ML 워크 플로우에서 쉽게 현업 가능한 모델, 데이터셋, 데모를 지원
-	- 버전 관리, 커밋 기록, 분기 등 12개 이상의 라이브러리를 통합적으로 제공
+	- ML 워크 플로우에서 쉽게 현업 가능한 모델, 데이터셋, 데모�

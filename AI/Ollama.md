@@ -32,9 +32,3 @@ PARAMETER stop "</s>"
 ```
 - Ollama 실행
 ```
-ollama create ggml-model-Q4_K-M.gguf -f Modefile
-
-ollama list
-
-ollama run ggml-model-Q4_K_M.gguf
-```
