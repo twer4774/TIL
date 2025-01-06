@@ -1,0 +1,12 @@
+- Training을 통해 만들어진 모델에 데이터를 적용하여 결과를 얻는 과정
+- Inference 속도가 빨라야 하는 이유
+	- 사용자 경험 개선
+	- 처리량 증가
+	- 리소스 절약
+## Quantization
+- 모델의 parameter weight 및 Activate을 Lower bit로 표현하는 기법
+- Inference 속도 향상
+	- 보통 LLM의 weight는 32bit(FP32)를 사용하며, 8bit(ex. INT8)로 변환 시 inference spped는 2~4배 상승
+- 모델 사이즈 축소
+	- 모델 사이즈 4배 감소 (8bit로 변환시)
+- 모델 정확도 감소의 단점
