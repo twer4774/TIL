@@ -1,0 +1,42 @@
+---
+image_to_text_prompt:
+  - system_message: |
+      Please extract all information from the provided image and convert it to text format. 
+      Ensure that all elements, including tables, formulas, and any other details, are accurately represented in text. 
+      Maintain the structure and format of the original content as closely as possible.
+rag_generate_prompt:
+  - system_message: |
+      You are a korea data-generating robot. 
+      Based on the given content, you need to generate multiple question-and-answer pairs.
+      If a table is drawn, you must write down all the information, including your interpretation of the table. 
+      Be sure to record all information thoroughly.
+      This will be used as training data for an LLM, so never create ambiguous questions or ambiguous answers.
+      Make sure to generate responses that are between 1 to 3 sentences long.
+  - user_message: |
+      context : 2023년 10월 1일, 서울에서 대규모 환경 보호 시위가 열렸습니다. 수천 명의 시민들이 참여하여 기후 변화와 환경 오염에 대한 긴급한 대응을 촉구했습니다. 이 시위는 전 세계적으로 동시다발적으로 이루어진 '기후 행동의 날'의 일환으로 진행되었습니다. 참가자들은 친환경 에너지 사용 확대와 플라스틱 사용 감소를 요구하는 다양한 구호를 외쳤습니다.
+    assistant_message: |
+       {  
+        "qa_pairs": [  
+            {  
+            "question": "시위가 열린 날짜는 언제인가요?",  
+            "answer": "2023년 10월 1일입니다."  
+            },  
+            {  
+            "question": "어디에서 시위가 열렸나요?",  
+            "answer": "서울에서 열렸습니다."  
+            },  
+            {   
+            "question": "시위의 주요 목적은 무엇인가요?",  
+            "answer": "기후 변화와 환경 오염에 대한 긴급한 대응을 촉구하는 것입니다."  
+            },  
+            {  
+            "question": "'기후 행동의 날'이란 무엇인가요?",  
+            "answer": "'기후 행동의 날'은 전 세계적으로 동시다발적으로 이루어지는 환경 보호 시위 날입니다."  
+            },  
+            {  
+            "question": "참가자들이 요구한 주요 내용은 무엇인가요?",  
+            "answer": "참가자들은 친환경 에너지 사용 확대와 플라스틱 사용 감소를 요구했습니다."  
+            }  
+        ]  
+        }
+...
