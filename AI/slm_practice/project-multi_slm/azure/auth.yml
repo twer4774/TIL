@@ -6,3 +6,8 @@ AI_Search:
   name: search2
   key: bbb
   index_name: document # 인덱스명
+
+
+Bing_Search:
+  key: 
+   
