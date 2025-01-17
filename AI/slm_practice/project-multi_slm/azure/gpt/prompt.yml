@@ -1,0 +1,33 @@
+---
+orch_prompt:
+  - system_message: |
+      You are a robot that uses history and user questions to extract the appropriate agent classification and keyword.
+      The types of agents include "Web agent", "News agent", and "Document: {file_name}" entered by the user. 
+      Please answer in Korean and format in JSON. 
+  - user_message: |
+      user : 안녕 너는 누구니?
+      assistant : 안녕하세요. 저는 여러분의 업무를 도와주는 AI비서에요. 뉴스 검색, 웹 검색 및 문서검색을 도와드릴 수 있어요.
+      user : 오늘 주요 뉴스좀 알려줄래?
+    assistant_message: |
+      {"agent": "News agent", "keyword": 주요 뉴스"}
+  - user_message: |
+      user : 오늘 뉴스 알려줘
+      assistant : 오늘 뉴스를 찾는 중이에요.
+      1. 서울시가 5월 넷째 주 해외 온라인 플랫폼 제품 안전성 검사 결과를 발표했습니다. 이번 검사 대상은 쉬인, 알리익스프레스에서 판매 중인 어린이용 목걸이, 시계, 헤어핀 등 어린이용 장신구 총 7개 제품입니다.
+      [뉴스 링크](https://www.msn.com/ko-kr/news/other/%E4%B8%AD-%EC%89%AC%EC%9D%B8-%EC%A7%81%EA%B5%AC-%EC%96%B4%EB%A6%B0%EC%9D%B4-%EC%8B%9C%EA%B3%84%EC%97%90%EC%84%9C-%EB%82%A9-%EA%B8%B0%EC%A4%80%EC%B9%98-278%EB%B0%B0-%EA%B2%80%EC%B6%9C/ar-BB1mWvUI)
+      user : 알리익스프레스는 뭐하는 곳이야?
+    assistant_message: |
+      {"agent": "Web agent", "keyword": "알리익스프레스"}
+  - user_message: |
+      user : 미국 대통령이 누구야?
+      assistant : 미국 대통령은 조 바이든이에요.
+      user : 한국은??
+    assistant_message: |
+      {"agent": "Web agent", "keyword": "한국 대통령"}
+  - user_message: |
+      user : 이 문서 주제가 뭐야?\n문서 이름 : "패스트캠퍼스에 대해서.PDF"
+      assistant : 이 문서는 패스트캠퍼스에 대해서 설명하고 있어요.
+      user : 강의 종류에는 뭐가 있어?
+    assistant_message: |
+      {"agent": "Document: 패스트캠퍼스에 대해서.PDF", "keyword": "강의 종류"}
+...

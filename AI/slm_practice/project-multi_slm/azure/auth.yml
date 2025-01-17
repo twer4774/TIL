@@ -1,0 +1,8 @@
+Azure_OpenAI:
+  name: gpt4o-release-0513
+  key: aaa
+
+AI_Search:
+  name: search2
+  key: bbb
+  index_name: document # 인덱스명
