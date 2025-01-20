@@ -8,9 +8,175 @@ import re
 from azure.gpt.orch import Orch
 from azure.bing_search.news import News
 from azure.bing_search.web import Web
-# from azure.cognitive_search.ai_search import AISearch
-# from huggingface.inference_Llama3 import Inference
+from azure.cognitive_search.ai_search import AISearch
 
+from huggingface.inference_Llama3 import Inference
+
+orch = Orch()
+news = News()
+web = Web()
+ai_search = AISearch()
+infer = Inference()
+
+#모듈 클래스
+class Module:  
+
+    fp = os.path.join(os.path.dirname(__file__), 'huggingface/prompt.yml')
+    prompt_llama = yaml.safe_load(open(fp, encoding='utf-8'))
+
+    def __init__(self):  
+        pass
+
+    #orchestration 모듈
+    @classmethod 
+    def _orch_generate(
+        cls, 
+        message: dict, 
+        history: list
+        ) -> tuple:
+
+        user_text = message['text']
+        if len(message['files']) > 0:
+            file_name = message['files'][0].split('/')[-1] 
+        else:
+            file_name = ''
+        
+        orch_prompt = ''
+
+        for h in history[-2:]:
+            #문서와 질문이 같이 들어 올 경우, 따로 처리를 해준다.
+            if h[1] == None:
+                history[-1][0] += "\n문서 이름 :"
+                history[-1][0] += h[0][0].split('/')[-1]
+                history.remove(h)
+                continue
+            orch_prompt += ('user : ' + h[0] + '\n')
+            orch_prompt += ('assistant : ' + h[1] + '\n')
+            #orch_prompt에서 링크 제거
+            orch_prompt = re.sub(r'<a .*?>.*?</a>', '', orch_prompt)  
+        orch_prompt += ('user : ' + user_text)
+
+        #문서가 같이 들어온 경우 따로 처리
+        if file_name != '':
+            orch_prompt += f"\n문서 이름 :{file_name}"
+
+        print(f"orch prompt: {orch_prompt}")
+        print("\n=============================================\n")
+
+        response = json.loads(orch._generate(orch_prompt))
+        print(f"orch response: {response}")
+        print("\n=============================================\n")
+
+        agent = response['agent']
+        keyword = response['keyword']
+        print(f"agent: {agent}\nkeyword: {keyword}")
+        print("\n=============================================\n")
+
+        return agent, keyword # agent, keyword 추출
+
+    #최종 답변 생성 모듈
+    @classmethod 
+    def _response_generate(
+        cls,
+        message: str,
+        search_results: list,
+        agent: str,
+        keyword: str,
+        args: dict
+    ) -> str:
+
+        user_text = message['text']
+
+        if "News agent" == agent:
+            system_prompt = cls.prompt_llama['news_prompt'][0]['system_massage']
+            fewshot_prompt = cls.prompt_llama['news_prompt'][1:]
+        elif "Web agent" == agent:
+            system_prompt = cls.prompt_llama['web_prompt'][0]['system_massage']
+            fewshot_prompt = cls.prompt_llama['web_prompt'][1:]
+        elif "Document" in agent:
+            system_prompt = cls.prompt_llama['document_prompt'][0]['system_massage']
+            fewshot_prompt = cls.prompt_llama['document_prompt'][1:]
+
+        for token in infer._generate(
+            system_prompt=system_prompt,
+            fewshot_prompt=fewshot_prompt,
+            context_prompt=search_results,
+            question_prompt=user_text,
+            keyword=keyword,
+            args=args
+        ):
+            yield token
+
+
+#검색 클래스
+class Retrieval:  
+    def __init__(self):  
+        pass  
+
+    #AI Search
+    @classmethod
+    def _aisearch(
+        cls,
+        keyword: str, 
+        file_name: str,
+        count: int=3
+    ) -> list:
+        retrieval_results =  ai_search.search(
+            query=keyword,
+            file_name=file_name,
+            topk=count
+        )
+        text = ''
+        for i, d in enumerate(retrieval_results):
+            text += f"\n검색문서 {i+1}\ncontent: {d['context']}"
+
+        return text
+
+    #빙 웹검색 API
+    @classmethod
+    def _newssearch(
+        cls,
+        keyword: str,
+        count: str=3
+    ) -> str:
+        search_results = news.search(
+            query=keyword,
+            count=count
+        )
+
+        text = ''
+        urls = []
+        titles = []
+        for i, d in enumerate(search_results):
+            text += f"\n뉴스 {i+1}\ntitle: {d['title']}"
+            text += f"\nsnippet:{d['snippet']}"
+            urls.append(d['url'])
+            titles.append(d['title'])
+
+        return text, urls, titles
+
+    #빙 뉴스검색 API
+    @classmethod
+    def _websearch(
+        cls,
+        keyword: str,
+        count: str=3
+    ) -> str:
+
+        search_results = web.search(
+            query=keyword,
+            count=count
+        )
+
+        text = ''
+        urls = []
+        titles = []
+        for i, d in enumerate(search_results):
+            text += f"\n검색결과 {i+1}\ntitle: {d['title']}"
+            text += f"\nsnippet:{d['snippet']}"
+            urls.append(d['url'])
+            titles.append(d['title'])
+        return text, urls, titles
 
 def run(message, history):
 
