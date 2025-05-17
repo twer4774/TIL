@@ -17,3 +17,13 @@
 4. git push
 	1. 이미 push나 pull request에 반영되어 있으므로 강제 옵션으로 해주어야 한다.
 		1. git push origin feature/branchA --force
+
+## 참고
+- 다른 브런치들의 메시지도 묶어서 하나의 브런치로 변경 가능하다.
+```
+branchA 커밋들
+branchB 커밋들
+=> git switch -c branchC
+
+branchC에서 rebase를 이용해 다른 커밋들을 squash해서 올려서 해결
+```
